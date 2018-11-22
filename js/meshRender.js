@@ -464,11 +464,11 @@ MeshRender.prototype = {
         }
 
         self.partBox.center( planeGroup.position );
-        // 根据零件大小生成条形网格数量
+        // 根据物体大小生成条形网格数量
         var planePreY = 0;
         var borderMaxY = 500;
-        var borderLeftRight = self.partDepth + borderMaxY * 2;  // 左右与零件的距离都是borderMaxY
-        var borderUpDown = self.partMaxZ - borderMaxY;  // 上下与零件的距离都是borderMaxY
+        var borderLeftRight = self.partDepth + borderMaxY * 2;  // 左右与物体的距离都是borderMaxY
+        var borderUpDown = self.partMaxZ - borderMaxY;  // 上下与物体的距离都是borderMaxY
         var offsetY = divideWidth + spacerRegion;
         var minGridBarNum = ( ( self.partDepth + borderMaxY * 2 ) / offsetY ).toFixed(0);
 
@@ -530,7 +530,7 @@ MeshRender.prototype = {
     /**
      *@brief 变换层
      *@args:
-     *      partNumber      //!<传递零件号
+     *      partNumber      //!<传递物体号
      *      layerNumber    //!<层号参数
      */
     changeLayer: function ( strategy, partNumber, layerNumber) {
@@ -632,7 +632,7 @@ MeshRender.prototype = {
     showCheckerboard0: function ( planeGroup, divideLong, longInterval, divideWidth, wideInterval ) {
         var self = this;
 
-        // 根据零件大小生成条形网格数量
+        // 根据物体大小生成条形网格数量
         var tempValue = self.checkerboardTempValue( divideLong, longInterval, divideWidth, wideInterval );
         var offsetX = tempValue.offsetX;
         var offsetY = tempValue.offsetY;
@@ -673,7 +673,7 @@ MeshRender.prototype = {
     showCheckerboard1: function ( planeGroup, divideLong, longInterval, divideWidth, wideInterval ) {
         var self = this;
 
-        // 根据零件大小生成条形网格数量
+        // 根据物体大小生成条形网格数量
         var tempValue = self.checkerboardTempValue( divideLong, longInterval, divideWidth, wideInterval );
         var offsetX = tempValue.offsetX;
         var offsetY = tempValue.offsetY;
@@ -732,7 +732,7 @@ MeshRender.prototype = {
     showCheckerboard2: function ( planeGroup, divideLong, longInterval, divideWidth, wideInterval ) {
         var self = this;
 
-        // 根据零件大小生成条形网格数量
+        // 根据物体大小生成条形网格数量
         var tempValue = self.checkerboardTempValue( divideLong, longInterval, divideWidth, wideInterval );
         var offsetX = tempValue.offsetX;
         var offsetY = tempValue.offsetY;
@@ -860,7 +860,7 @@ MeshRender.prototype = {
 
 
     /**
-     *@brief 绘制序号
+     *@brief 绘制序号(Qt)
      */
     drawName: function ( object, name, worldCoorX, worldCoorY, worldCoorZ, textureSource ) {
         var fontGeometry = new THREE.BoxGeometry( 60, 60, 2 );
