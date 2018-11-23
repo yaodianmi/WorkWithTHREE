@@ -27,8 +27,10 @@
     </style>
 
     <script>
+        // like: https://www.wjceo.com/blog/threejs/2018-02-09/7.html
+
         //渲染器
-        var renderer,width,height;
+        var renderer, width, height;
         function initRender() {
             width = document.getElementById('canvas-frame').clientWidth;
             height = document.getElementById('canvas-frame').clientHeight;
@@ -79,12 +81,15 @@
             geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
             geometry.vertices.push(new THREE.Vector3(500, 0, 0));
 
+            
             for (var i = 0; i <= 20; i++) {
-                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
+                // var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
+                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: 0x483D8B, opacity: 1}));
                 line.position.z = ( i * 50 ) - 500;
                 scene.add(line);
 
-                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
+                // var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
+                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: 0x483D8B, opacity: 1}));
                 line.position.x = ( i * 50 ) - 500;
                 line.rotation.y = 90 * Math.PI / 180;
                 scene.add(line);
