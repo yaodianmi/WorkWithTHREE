@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Three框架: 一个好的结构书写</title>
+    <title>M260</title>
     <script src="../lib/three.js"></script>
     <style type="text/css">
         html, body {
@@ -27,7 +27,6 @@
     </style>
 
     <script>
-        // like: https://www.wjceo.com/blog/threejs/2018-02-09/7.html
 
         //渲染器
         var renderer, width, height;
@@ -65,7 +64,7 @@
         //光源
         var light;
         function initLight() {
-            light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+            light = new THREE.DirectionalLight( 0x800080, 1.0, 0 );
             light.position.set(100, 100, 200);
             scene.add(light);
         }
@@ -73,7 +72,8 @@
  
         //模型
         function initModel() {
-            //轴辅助 （每一个轴的长度）
+            // 测试网格
+            // 轴辅助 （每一个轴的长度）
             var object = new THREE.AxesHelper(500);
             scene.add(object);
 
@@ -81,19 +81,47 @@
             geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
             geometry.vertices.push(new THREE.Vector3(500, 0, 0));
 
-            
-            for (var i = 0; i <= 0; i++) {
+            for (var i = 0; i <= 10; i++) {
                 // var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
                 var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: 0x483D8B, opacity: 1}));
-                line.position.z = ( i * 50 ) - 500;
+                line.position.z = ( i * 100 ) - 500;
                 scene.add(line);
 
                 // var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: randomColor(), opacity: 1}));
                 var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({color: 0x483D8B, opacity: 1}));
-                line.position.x = ( i * 50 ) - 500;
+                line.position.x = ( i * 100 ) - 500;
                 line.rotation.y = 90 * Math.PI / 180;
                 scene.add(line);
             }
+
+
+            // 测试四个孔
+            var material = new THREE.LineBasicMaterial( { color: 0x0000FF } );
+            var geometry = new THREE.CircleGeometry( 40, 64 );
+            geometry.vertices.shift();  // Remove center vertex
+            
+            for ( var i = 0; i < 3; i += 2 ) {
+                var circle = new THREE.LineLoop( geometry, material );
+                circle.position.x = ( i * 450 ) - 450;
+                circle.position.z = ( i * 450 ) - 450;
+                scene.add( circle );
+
+                var circle = new THREE.LineLoop( geometry, material );
+                circle.position.x = ( i * 450 ) - 450;
+                circle.position.z = ( -i * 450 ) + 450;
+                scene.add( circle );
+            }
+
+
+            // 虚线包围盒
+            var hex  = 0x808080;
+            var sphereMaterial = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
+            var sphere = new THREE.Mesh( new THREE.SphereGeometry( 30, 12, 12), sphereMaterial );
+            scene.add( sphere );
+            var bbox = new THREE.DottedBoundingBoxHelper( sphere, hex );
+            bbox.update();
+            scene.add( bbox );
+
 
             console.log(scene);
         }
